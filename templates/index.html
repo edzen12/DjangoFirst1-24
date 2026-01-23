@@ -1,11 +1,26 @@
-<h1>Hello pcs 1-24</h1>
+{% extends "base.html" %}
 
-{% for news in news_all %}
-    <h3>{{news.title}} </h3>
-    {% if news.image %}
-        <img width="300px" src="{{news.image.url}}" alt="">
-    {% else %}
-        <img width="300px" src="https://nazarnews.org/media/news_images/2020/05/27/NazarNews_49563553593097062998281876513878573893.jpg" alt="">
-    {% endif %}
-    <p>{{news.description|safe}}</p>
-{% endfor %}
+{% block content %}
+<div class="container mt-5">
+    <h1>Hello pcs 1-24</h1>
+    <div class="row">
+        {% for news in news_all %}
+        <div class="col-4">
+            <div class="card">
+            {% if news.image %}
+            <img src="{{news.image.url}}" class="card-img-top">
+            {% else %}
+                <img width="300px" src="https://nazarnews.org/media/news_images/2020/05/27/NazarNews_49563553593097062998281876513878573893.jpg" alt="">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{news.title}}</h5>
+                <p class="card-text">{{news.description|truncatewords:10|safe}}</p>
+                <a href="{% url "news_detail" news.slug %}" class="btn btn-primary">Перейти</a>
+            </div>
+            </div> 
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
+

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>Отдельная страница</h2>
+    <div class="row">
+        <div class="col-lg-8">
+            <img src="{{news.image.url}}" class="card-img-top">
+            <h5 class="card-title">{{news.title}}</h5>
+           <p class="card-text">{{news.description|safe}}</p>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
