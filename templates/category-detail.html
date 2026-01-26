@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="container mt-5">
+        <h1>{{category}}</h1>
+        <div class="row">
+            {% for new in news %}
+            <div class="col-4">
+                <div class="card">
+                {% if new.image %}
+                <img src="{{new.image.url}}" class="card-img-top">
+                {% else %}
+                    <img width="300px" src="https://nazarnews.org/media/news_images/2020/05/27/NazarNews_49563553593097062998281876513878573893.jpg" alt="">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{new.title}}</h5>
+                    <p class="card-text">{{new.description|truncatewords:10|safe}}</p>
+                    <a href="{% url "news_detail" new.slug %}" class="btn btn-primary">Перейти</a>
+                </div>
+                </div> 
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock content %}

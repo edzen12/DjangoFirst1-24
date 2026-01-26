@@ -3,7 +3,7 @@ from news.models import News, Category
 
 def homepage(request):
     news_all = News.objects.all()
-    categories = Category.objects.all()
+    categories = Category.objects.filter(news__isnull=False).distinct()
     context = {
         'news_all':news_all,
         'categories':categories,
@@ -13,9 +13,21 @@ def homepage(request):
 
 def news_detail(request, slug):
     news = get_object_or_404(News, slug=slug)
-    categories = Category.objects.all()
+    categories = Category.objects.filter(news__isnull=False).distinct()
     context = {
         'news':news,
         'categories':categories,
     }
     return render(request, 'single-page.html', context)
+
+
+def category_detail(request, slug):
+    category = get_object_or_404(Category, slug=slug)
+    news = News.objects.filter(category=category)
+    categories = Category.objects.filter(news__isnull=False).distinct()
+    context = {
+        'news':news,
+        'category':category,
+        'categories':categories,
+    }
+    return render(request, 'category-detail.html', context)

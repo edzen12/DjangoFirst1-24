@@ -4,11 +4,32 @@
 <div class="container">
     <h2>Отдельная страница</h2>
     <div class="row">
+        <!-- col -->
         <div class="col-lg-8">
             <img src="{{news.image.url}}" class="card-img-top">
             <h5 class="card-title">{{news.title}}</h5>
            <p class="card-text">{{news.description|safe}}</p>
         </div>
+        <!-- col -->
+        <div class="col-lg-4">
+            <h3>Комментарии</h3>
+            <form action="" method="post">
+                {% csrf_token %}
+                <input class="form-control mt-2" type="text" placeholder="Имя">
+                <textarea class="form-control mt-2" name="" id="" placeholder="Комментарии"></textarea>
+                <button type="submit" class="btn btn-primary mt-2">Отправить</button>
+            </form>
+
+            <div class="otvet mt-2 p-2" style="border:1px solid black">
+                <p>Gena Alkash</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae aliquam natus nesciunt. Laborum ipsum expedita consectetur provident quidem sapiente reiciendis necessitatibus, in, unde nostrum consequatur earum aliquid voluptatibus obcaecati maiores.</p>
+            </div>
+            <div class="otvet mt-2 p-2" style="border:1px solid black">
+                <p>Gena Alkash</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae aliquam natus nesciunt. Laborum ipsum expedita consectetur provident quidem sapiente reiciendis necessitatibus, in, unde nostrum consequatur earum aliquid voluptatibus obcaecati maiores.</p>
+            </div>
+        </div>
+        <!-- col -->
     </div>
 </div>
 
