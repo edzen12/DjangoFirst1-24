@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from news.models import News, Category, Comment
-from news.forms import CommentForm
+from apps.news.models import News, Category
+from apps.news.forms import CommentForm
 
 
 def homepage(request):
