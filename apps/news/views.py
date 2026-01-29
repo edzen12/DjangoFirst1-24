@@ -33,7 +33,7 @@ def news_detail(request, slug):
         'categories':categories,
         'form':form
     }
-    return render(request, 'single-page.html', context)
+    return render(request, 'pages/single-page.html', context)
 
 
 def category_detail(request, slug):
@@ -45,4 +45,4 @@ def category_detail(request, slug):
         'category':category,
         'categories':categories,
     }
-    return render(request, 'category-detail.html', context)
+    return render(request, 'pages/category-detail.html', context)

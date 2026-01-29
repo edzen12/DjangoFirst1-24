@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Сотрудники</h1>
+    <div class="row">
+        {% for team in teams %}
+        <div class="col-4">
+            <div class="card"> 
+            <div class="card-body">
+                <h5 class="card-title">{{team.name}}</h5>
+                <p class="card-text">{{team.position}} - {{team.exp}}</p>
+                {% if team.sociallink_set.all %}
+                    {% for social in team.sociallink_set.all %}
+                    <a href="{{social.link}}" >{{social.title}}</a>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            </div> 
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
+
