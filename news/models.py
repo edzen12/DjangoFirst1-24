@@ -35,3 +35,18 @@ class News(models.Model):
         verbose_name_plural = 'Новости'
         verbose_name = 'новость'
         ordering = ['-id']
+
+
+class Comment(models.Model):
+    news = models.ForeignKey(News, on_delete=models.CASCADE, verbose_name="Новость", related_name='comments')
+    name = models.CharField(verbose_name="ФИО", max_length=50)
+    text = models.TextField(verbose_name="Описание")
+    created_at = models.DateTimeField(auto_now_add=True) # время ставим автоматом
+    is_published = models.BooleanField(default=False) # проверяем перед выходом
+
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name_plural = 'Комментарии'
+        verbose_name = 'комментарии'

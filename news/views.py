@@ -1,5 +1,7 @@
-from django.shortcuts import render, get_object_or_404
-from news.models import News, Category
+from django.shortcuts import render, get_object_or_404, redirect
+from news.models import News, Category, Comment
+from news.forms import CommentForm
+
 
 def homepage(request):
     news_all = News.objects.all()
@@ -14,9 +16,22 @@ def homepage(request):
 def news_detail(request, slug):
     news = get_object_or_404(News, slug=slug)
     categories = Category.objects.filter(news__isnull=False).distinct()
+    comments = news.comments.filter(is_published=True).order_by('-created_at')
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.news = news 
+            comment.save()
+            return redirect('news_detail', slug=slug)
+    else:
+        form = CommentForm()
     context = {
         'news':news,
+        'comments':comments,
         'categories':categories,
+        'form':form
     }
     return render(request, 'single-page.html', context)
 

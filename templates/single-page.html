@@ -13,20 +13,20 @@
         <!-- col -->
         <div class="col-lg-4">
             <h3>Комментарии</h3>
-            <form action="" method="post">
+            <form method="POST">
                 {% csrf_token %}
-                <input class="form-control mt-2" type="text" placeholder="Имя">
-                <textarea class="form-control mt-2" name="" id="" placeholder="Комментарии"></textarea>
+                {{form.name}}
+                {{form.text}}
                 <button type="submit" class="btn btn-primary mt-2">Отправить</button>
             </form>
-
-            <div class="otvet mt-2 p-2" style="border:1px solid black">
-                <p>Gena Alkash</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae aliquam natus nesciunt. Laborum ipsum expedita consectetur provident quidem sapiente reiciendis necessitatibus, in, unde nostrum consequatur earum aliquid voluptatibus obcaecati maiores.</p>
-            </div>
-            <div class="otvet mt-2 p-2" style="border:1px solid black">
-                <p>Gena Alkash</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae aliquam natus nesciunt. Laborum ipsum expedita consectetur provident quidem sapiente reiciendis necessitatibus, in, unde nostrum consequatur earum aliquid voluptatibus obcaecati maiores.</p>
+            <div class="comments">
+                {% for comment in comments %}
+                <div class="otvet mt-2 p-2" style="border:1px solid black">
+                    <h5>{{comment.name}}</h5>
+                    <p>{{comment.created_at}}</p>
+                    <p>{{comment.text}}</p>
+                </div> 
+                {% endfor %}
             </div>
         </div>
         <!-- col -->
