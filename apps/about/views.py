@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from apps.about.models import About, Team
 from apps.news.models import Category
 
@@ -21,3 +21,14 @@ def teamsFunc(request):
         'teams':teams
     }
     return render(request, 'pages/teams.html', context)
+
+
+
+def team_detail(request, slug):
+    team = get_object_or_404(Team, slug=slug)
+    categories = Category.objects.filter(news__isnull=False).distinct()  
+    context = {
+        'team':team, 
+        'categories':categories 
+    }
+    return render(request, 'pages/team-single.html', context)

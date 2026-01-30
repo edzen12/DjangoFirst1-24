@@ -8,7 +8,14 @@
         <div class="col-4">
             <div class="card"> 
             <div class="card-body">
-                <h5 class="card-title">{{team.name}}</h5>
+                <div class="imgBlock" style="height: 250px;">
+                    {% if team.image %}
+                    <img style="height: 100%; object-fit: cover;" class="img-thumbnail" src="{{team.image.url}}" alt="">
+                    {% else %}
+                    <img style="height: 100%; object-fit: cover;" class="img-thumbnail" src="https://i.pinimg.com/564x/4f/9b/61/4f9b611e72d038a4e8176709de0913d4.jpg" alt="">
+                    {% endif %}
+                </div>
+                <h5 class="card-title"><a href="{% url 'team_detail' team.slug %}">{{team.name}}</a></h5>
                 <p class="card-text">{{team.position}} - {{team.exp}}</p>
                 {% if team.sociallink_set.all %}
                     {% for social in team.sociallink_set.all %}

@@ -18,8 +18,11 @@ class About(models.Model):
 
 class Team(models.Model):
     name = models.CharField(max_length=100, verbose_name="ФИО")
+    image = models.ImageField(upload_to='teams/', verbose_name="Фото", null=True)
+    biog = CKEditor5Field('Биография', config_name='extends', null=True)
     position = models.CharField(max_length=100, verbose_name="Должность")
     exp = models.CharField(max_length=100, verbose_name="Опыт")
+    slug = models.SlugField(unique=True, null=True)
 
     def __str__(self):
         return self.name
@@ -34,4 +37,11 @@ class SocialLink(models.Model):
 
     def __str__(self):
         return self.title
-    
+
+class ImageShotsTeam(models.Model):
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, verbose_name="Сотрудник")
+    title = models.CharField(verbose_name="Название фотки", max_length=100)
+    img = models.ImageField(upload_to='shotsImage')
+
+    def __str__(self):
+        return self.title

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>Отдельная страница</h2>
+    <div class="row">
+        <!-- col -->
+        <div class="col-lg-8">
+            <img style="width:300px" src="{{team.image.url}}" class="card-img-top">
+            <h5 class="card-title">{{team.name}}</h5>
+           <p class="card-text">{{team.position}} - {{team.exp}}</p>
+           <p>{{team.biog|safe}}</p>
+        </div>
+        <!-- col --> 
+    </div>
+</div>
+
+{% endblock content %}
