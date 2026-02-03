@@ -6,7 +6,7 @@
 ##### открываем его через VSCode, открываем terminal и пишем
 ##### python -m venv venv
 ##### .\venv\Scripts\activate
-##### pip install django pillow
+##### pip install django pillow django-ckeditor-5
 ##### python manage.py migrate
 ##### python manage.py createsuperuser
 ##### python manage.py runserver
